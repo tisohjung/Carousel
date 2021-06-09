@@ -28,12 +28,12 @@ struct ContentView: View {
                 ScrollView(.horizontal) {
                     HStack(spacing: 50) {
                         ForEach(0 ..< 30) { _ in
-                            GeometryReader { proxy in
 
                                 NavigationLink(
                                     destination: Image(imageName),
                                     label: {
                                     VStack {
+                                        GeometryReader { proxy in
                                         let scale = getScale(proxy: proxy)
                                         Image(imageName)
                                             .resizable()
@@ -49,15 +49,13 @@ struct ContentView: View {
                                             .scaleEffect(CGSize(width: scale, height: scale))
                                             .animation(.easeOut(duration: 0.5))
 
+                                        }
+                                        .frame(width: 125, height: 300, alignment: .center)
                                         Text(imageTitle).padding(.top).multilineTextAlignment(.center)
                                             .foregroundColor(.blue)
                                     }
                                 })
 
-//                                Text(num.description)
-//                                    .font(.system(size: 30, weight: .bold, design: Font.Design.rounded))
-                            }
-                            .frame(width: 125, height: 300, alignment: .center)
                         }
                     }.padding(32)
                 }
